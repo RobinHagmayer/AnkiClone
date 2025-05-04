@@ -1,5 +1,9 @@
 package dev.hagmayer.ankiclone;
 
+import com.fatboyindustrial.gsonjavatime.Converters;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.ArrayList;
 
 public class AnkiClone {
@@ -16,5 +20,9 @@ public class AnkiClone {
         ArrayList<Deck> decks = userData.getDecks();
         decks.add(deck);
         System.out.println(userData);
+
+        Gson gson = Converters.registerLocalDate(new GsonBuilder()).create();
+        String json = gson.toJson(userData);
+        System.out.println(json);
     }
 }
