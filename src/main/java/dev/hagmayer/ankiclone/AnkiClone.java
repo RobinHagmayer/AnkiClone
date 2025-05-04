@@ -11,5 +11,10 @@ public class AnkiClone {
         ArrayList<Card> cards = deck.getCards();
         cards.add(card);
         System.out.println(deck);
+
+        UserData userData = new UserData();
+        ArrayList<Deck> decks = userData.getDecks();
+        decks.add(deck);
+        System.out.println(userData);
     }
 }
