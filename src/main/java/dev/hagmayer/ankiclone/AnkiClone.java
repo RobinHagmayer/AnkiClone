@@ -2,6 +2,7 @@ package dev.hagmayer.ankiclone;
 
 public class AnkiClone {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Card card = new Card("World", "Welt");
+        System.out.println(card.toString());
     }
 }
