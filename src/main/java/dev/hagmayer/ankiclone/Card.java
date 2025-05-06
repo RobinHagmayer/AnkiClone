@@ -1,6 +1,7 @@
 package dev.hagmayer.ankiclone;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Card {
     private final String front;
@@ -69,5 +70,22 @@ public class Card {
                 ", knowledgeLevel=" + knowledgeLevel +
                 ", timesReviewed=" + timesReviewed +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return reviewInterval == card.reviewInterval &&
+                knowledgeLevel == card.knowledgeLevel &&
+                timesReviewed == card.timesReviewed &&
+                Objects.equals(front, card.front) &&
+                Objects.equals(back, card.back) &&
+                Objects.equals(lastReviewed, card.lastReviewed);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(front, back, lastReviewed, reviewInterval, knowledgeLevel, timesReviewed);
     }
 }

@@ -1,6 +1,7 @@
 package dev.hagmayer.ankiclone;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Deck {
     private final String name;
@@ -25,5 +26,17 @@ public class Deck {
                 "name='" + name + '\'' +
                 ", cards=" + cards +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Deck deck = (Deck) o;
+        return Objects.equals(name, deck.name) && Objects.equals(cards, deck.cards);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, cards);
     }
 }
