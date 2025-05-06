@@ -16,6 +16,9 @@ public class DataPersister {
 
     public void saveData(UserData userData) {
         // TODO: Tests and better error handling
+        if (userData == null) {
+            throw new RuntimeException();
+        }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATA_FILE))) {
             gson.toJson(userData, writer);
         } catch (IOException e) {
@@ -30,7 +33,11 @@ public class DataPersister {
         // Does this correctly recreate the UserData object?
         // Do we want to bubble up the exception?
         try (BufferedReader reader = new BufferedReader(new FileReader(DATA_FILE))) {
-            return gson.fromJson(reader, UserData.class);
+            UserData userData = gson.fromJson(reader, UserData.class);
+            if (userData == null) {
+                throw new RuntimeException();
+            }
+            return userData;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
